@@ -1,19 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
+import transactionsData from '../lib/transactions.json';
 
 export default function DashboardPage() {
     const navigate = useNavigate();
     const [hoveredTransaction, setHoveredTransaction] = useState<number | null>(null);
     const [isBalanceHidden, setIsBalanceHidden] = useState(false);
 
-    const recentTransactions = [
-        { id: 1, date: 'Dec 20, 2025', description: 'Grocery Store', category: 'Shopping', amount: '-$845.24', type: 'debit' },
-        { id: 2, date: 'Dec 5, 2025', description: 'Deposit', category: 'Income', amount: '$84,500.00', type: 'credit' },
-        { id: 3, date: 'Oct 12, 2025', description: 'Electric Bill', category: 'Utilities', amount: '-$103.23', type: 'debit' },
-        { id: 4, date: 'Aug 10, 2025', description: 'Restaurant', category: 'Food & Dining', amount: '-$634.50', type: 'debit' },
-        { id: 5, date: 'May 8, 2025', description: 'Freelance Work', category: 'Income', amount: '$20,200.00', type: 'credit' },
-    ];
+    const recentTransactions = transactionsData;
 
     return (
         <div className="app-shell fnf-dash">
