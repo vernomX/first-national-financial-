@@ -1,0 +1,358 @@
+.loginContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f7fa;
+  padding: 2rem;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+}
+
+.loginCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem 2.5rem 2rem;
+  margin: 0 auto;
+  border: 1px solid #eaeef2;
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  margin: 1rem auto 1.5rem;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.logoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.logoImage {
+  width: 64px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+.logoText {
+  color: #1a2c47;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  white-space: nowrap;
+  margin-top: 0.5rem;
+}
+
+.loginTitle {
+  color: #1a2c47;
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin: 0 0 1.75rem;
+  text-align: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #eaeef2;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: -0.2px;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.errorMessage {
+  background-color: #FEF2F2;
+  color: #B91C1C;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  border: 1px solid #FECACA;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.errorMessage::before {
+  content: '!\00a0';
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.inputLabel {
+  display: block;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  transition: all 0.2s ease;
+  background-color: #fff;
+  color: #111827;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.inputField::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #1a2c47;
+  box-shadow: 0 0 0 3px rgba(26, 44, 71, 0.1);
+  background-color: #fff;
+}
+
+.passwordHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.passwordInputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  padding-right: 2.5rem;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 1.1rem;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginButton {
+  width: 100%;
+  background-color: #1a2c47 !important;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 1.5rem;
+  text-align: center;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.loginButton:hover {
+  background-color: #1a2c47 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.loginButton:active {
+  background-color: #1a2c47 !important;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.securityBadges {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid #eaeef2;
+  width: 100%;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  color: #4b5563;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+  gap: 0.5rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.badgeIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #1a2c47;
+  flex-shrink: 0;
+}
+
+.helpLink {
+  text-align: center;
+  margin: 1.5rem 0 0.5rem;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid #eaeef2;
+  font-size: 0.875rem;
+}
+
+.helpLink a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.helpLink a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  margin-top: 2.5rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.8125rem;
+  width: 100%;
+  max-width: 420px;
+  padding: 0 1rem;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.divider {
+  color: #d1d5db;
+}
+
+.otpInput {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1, "lnum" 1 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 3.5rem !important;
+  padding: 0 !important;
+}
+
+/* Loading Overlay */
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.loadingOverlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1a2c47;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .loginContainer {
+    padding: 1rem;
+  }
+
+  .logoContainer {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  .loginCard {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .logoText {
+    font-size: 1.25rem;
+  }
+
+  .loginTitle {
+    font-size: 1.3rem;
+  }
+}

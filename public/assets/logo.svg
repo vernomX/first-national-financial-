@@ -1,0 +1,10 @@
+<svg width="64" height="48" viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>First National Financial</title>
+  <g fill="#D4B256">
+    <polygon points="8,20 32,6 56,20" />
+    <rect x="14" y="22" width="6" height="14" rx="1" />
+    <rect x="29" y="22" width="6" height="14" rx="1" />
+    <rect x="44" y="22" width="6" height="14" rx="1" />
+    <rect x="10" y="38" width="44" height="3" rx="1.5" />
+  </g>
+</svg>
