@@ -2,7 +2,7 @@
   {
     "id": 1,
     "date": "Jul 16, 2026",
-    "description": "Grocery Store",
+    "description": "Walmart",
     "category": "Shopping",
     "amount": "-$9845.24",
     "type": "debit"
@@ -26,14 +26,14 @@
   {
     "id": 4,
     "date": "Jul 13, 2026",
-    "description": "Flight Ticket",
+    "description": "AAadvantage",
     "category": "Ticket",
     "amount": "-$12834.50",
     "type": "debit"
   },
   {
     "id": 5,
-    "date": "jul 13, 2026",
+    "date": "Jul 13, 2026",
     "description": "Deposit",
     "category": "Income",
     "amount": "$20,200.00",

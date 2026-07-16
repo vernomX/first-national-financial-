@@ -55,10 +55,10 @@ export default function BillPayPage() {
     ];
 
     const [recentPayments, setRecentPayments] = useState([
-        { id: 1, payee: 'Electric Company', amount: 125.75, date: '2025-11-15', status: 'Completed' },
-        { id: 2, payee: 'Water Utility', amount: 45.20, date: '2025-11-10', status: 'Completed' },
-        { id: 3, payee: 'Internet Provider', amount: 79.99, date: '2025-11-05', status: 'Completed' },
-        { id: 4, payee: 'Mobile Carrier', amount: 65.00, date: '2025-10-28', status: 'Completed' },
+        { id: 1, payee: 'Electric Company', amount: 125.75, date: '2026-07-15', status: 'Completed' },
+        { id: 2, payee: 'Water Utility', amount: 45.20, date: '2026-07-12', status: 'Completed' },
+        { id: 3, payee: 'Internet Provider', amount: 79.99, date: '2026-07-10', status: 'Completed' },
+        { id: 4, payee: 'Mobile Carrier', amount: 65.00, date: '2026-07-05', status: 'Completed' },
     ]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
