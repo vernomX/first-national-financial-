@@ -53,7 +53,7 @@ export default function SettingsPage() {
     };
 
     return (
-        <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
+        <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f6f4ef' }}>
             <Sidebar />
             <div className="app-main settings-page" style={{
                 marginLeft: '240px',
@@ -276,7 +276,7 @@ export default function SettingsPage() {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
           margin: 0;
           padding: 0;
-          background-color: #f8fafc;
+          background-color: #f6f4ef;
         }
         
         .settings-container {

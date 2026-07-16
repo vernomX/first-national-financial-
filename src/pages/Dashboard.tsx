@@ -13,7 +13,7 @@ export default function DashboardPage() {
     const recentTransactions = transactionsData;
 
     return (
-        <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
+        <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f6f4ef' }}>
             <Sidebar />
             <main className="app-main dashboard-page" style={{
                 marginLeft: '240px',

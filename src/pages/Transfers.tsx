@@ -184,12 +184,12 @@ export default function TransfersPage() {
     };
 
     return (
-        <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
+        <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f6f4ef' }}>
             <Sidebar />
             <div className="app-main transfers-page" style={{
                 flex: 1,
                 marginLeft: '240px',
-                backgroundColor: '#f8f9fa',
+                backgroundColor: '#f6f4ef',
                 minHeight: '100vh',
                 padding: '32px 40px'
             }}>

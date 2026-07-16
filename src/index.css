@@ -4,7 +4,7 @@
 
 :root {
   /* Color System */
-  --background: #f4f5f7;
+  --background: #f6f4ef;
   --surface: #ffffff;
   --text-main: #020617;
   --text-muted: #6b7280;
@@ -268,7 +268,7 @@ img {
   .app-shell {
     display: block !important;
     min-height: 100vh;
-    background-color: #f8f9fa;
+    background-color: #f6f4ef;
   }
 
   .app-main {
@@ -553,7 +553,7 @@ img {
   .app-shell {
     display: flex;
     min-height: 100vh;
-    background-color: #f8f9fa;
+    background-color: #f6f4ef;
   }
 
   .mobile-topbar {
