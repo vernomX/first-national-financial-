@@ -576,22 +576,35 @@ export default function TransfersPage() {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
+                                    onMouseEnter={(e) => {
+                                        if (!isLoading) e.currentTarget.style.filter = 'brightness(1.05)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        if (!isLoading) e.currentTarget.style.filter = 'none';
+                                    }}
+                                    onMouseDown={(e) => {
+                                        if (!isLoading) e.currentTarget.style.transform = 'scale(0.99)';
+                                    }}
+                                    onMouseUp={(e) => {
+                                        if (!isLoading) e.currentTarget.style.transform = 'none';
+                                    }}
                                     style={{
-                                        backgroundColor: isLoading ? '#2a2a3c' : '#1a1a2e',
-                                        color: 'white',
+                                        background: 'linear-gradient(180deg, #e2c47f 0%, #c9a24a 100%)',
+                                        color: '#1a1300',
                                         border: 'none',
-                                        borderRadius: '6px',
-                                        padding: '12px',
+                                        borderRadius: '8px',
+                                        padding: '15px',
                                         fontSize: '16px',
-                                        fontWeight: '600',
+                                        fontWeight: '700',
                                         cursor: isLoading ? 'wait' : 'pointer',
                                         width: '100%',
-                                        transition: 'background-color 0.2s',
+                                        transition: 'all 0.18s ease',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         gap: '8px',
-                                        boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                                        boxShadow: '0 8px 22px rgba(201,162,74,0.28)',
+                                        opacity: isLoading ? 0.85 : 1,
                                     }}
                                 >
                                     {isLoading ? 'Processing...' : 'Transfer Money'}
