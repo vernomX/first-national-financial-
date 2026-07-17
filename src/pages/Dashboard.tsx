@@ -1,16 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import transactionsData from '../lib/transactions.json';
+import { getPendingPayments } from '../lib/pendingPayments';
 
 export default function DashboardPage() {
     const navigate = useNavigate();
 
-    const [hoveredTransaction, setHoveredTransaction] = useState<number | null>(null);
+    const [hoveredTransaction, setHoveredTransaction] = useState<string | number | null>(null);
     const [isBalanceHidden, setIsBalanceHidden] = useState(false);
 
     // Data for recent transactions imported from configuration file
     const recentTransactions = transactionsData;
+
+    const [pending, setPending] = useState<ReturnType<typeof getPendingPayments>>([]);
+    useEffect(() => {
+        setPending(getPendingPayments());
+    }, []);
+
+    const merged = [
+        ...pending.map(p => ({ id: p.id, date: p.date, description: p.description, category: p.category, amount: p.amount, type: p.type, status: 'Pending' })),
+        ...recentTransactions,
+    ];
 
     return (
         <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f6f4ef' }}>
@@ -283,7 +294,7 @@ export default function DashboardPage() {
                             <div style={{ textAlign: 'right' }}>Amount</div>
                         </div>
 
-                        {recentTransactions.map((transaction, index) => (
+                        {merged.map((transaction, index) => (
                             <div
                                 key={transaction.id}
                                 onMouseEnter={() => setHoveredTransaction(transaction.id)}
@@ -292,7 +303,7 @@ export default function DashboardPage() {
                                     display: 'grid',
                                     gridTemplateColumns: '1.5fr 2fr 1.5fr 1fr',
                                     padding: '16px 24px',
-                                    borderBottom: index < recentTransactions.length - 1 ? '1px solid #f1f5f9' : 'none',
+                                    borderBottom: index < merged.length - 1 ? '1px solid #f1f5f9' : 'none',
                                     transition: 'background-color 0.2s',
                                     backgroundColor: hoveredTransaction === transaction.id ? '#f8fafc' : 'white'
                                 }}
@@ -310,9 +321,26 @@ export default function DashboardPage() {
                                     fontSize: '14px',
                                     fontWeight: '500',
                                     display: 'flex',
-                                    alignItems: 'center'
+                                    alignItems: 'center',
+                                    gap: '8px'
                                 }}>
-                                    {transaction.description}
+                                    <span>{transaction.description}</span>
+                                    {'status' in transaction && transaction.status === 'Pending' && (
+                                        <span style={{
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            fontSize: '10px',
+                                            fontWeight: '700',
+                                            backgroundColor: '#fef3c7',
+                                            color: '#d97706',
+                                            padding: '2px 8px',
+                                            borderRadius: '9999px',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.5px'
+                                        }}>
+                                            Pending
+                                        </span>
+                                    )}
                                 </div>
                                 <div style={{
                                     color: '#64748b',
