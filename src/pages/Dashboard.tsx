@@ -25,6 +25,22 @@ export default function DashboardPage() {
 
     return (
         <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f6f4ef' }}>
+            <style>{`
+                @media (max-width: 480px) {
+                    .balance-wrapper {
+                        min-width: auto !important;
+                    }
+                    .currency-symbol {
+                        font-size: 20px !important;
+                    }
+                    .balance-text {
+                        font-size: 30px !important;
+                    }
+                    .dashboard-balance-card {
+                        padding: 24px 16px !important;
+                    }
+                }
+            `}</style>
             <Sidebar />
             <main className="app-main dashboard-page" style={{
                 marginLeft: '240px',
@@ -90,10 +106,10 @@ export default function DashboardPage() {
                                         MozOsxFontSmoothing: 'grayscale'
                                     }}
                                 >
-                                    <span style={{ display: 'inline-flex', alignItems: 'baseline', minWidth: '13ch' }}>
-                                        <span style={{ fontSize: '28px', fontWeight: '700', color: '#0f172a', marginRight: '6px' }}>$</span>
-                                        <span style={{ fontSize: '42px', fontWeight: '800', color: '#0f172a', lineHeight: 1.08 }}>
-                                            {isBalanceHidden ? '•••,•••.••' : '560,568.17'}
+                                    <span className="balance-wrapper" style={{ display: 'inline-flex', alignItems: 'baseline', minWidth: '13ch' }}>
+                                        <span className="currency-symbol" style={{ fontSize: '28px', fontWeight: '700', color: '#0f172a', marginRight: '6px' }}>$</span>
+                                        <span className="balance-text" style={{ fontSize: '42px', fontWeight: '800', color: '#0f172a', lineHeight: 1.08 }}>
+                                            {isBalanceHidden ? '•••,•••.••' : '3,050,568.17'}
                                         </span>
                                     </span>
                                 </div>

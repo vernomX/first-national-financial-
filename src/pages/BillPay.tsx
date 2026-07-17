@@ -55,9 +55,9 @@ export default function BillPayPage() {
     ];
 
     const [recentPayments, setRecentPayments] = useState([
-        { id: 1, payee: 'Electric Company', amount: 125.75, date: '2026-07-15', status: 'Completed' },
-        { id: 2, payee: 'Water Utility', amount: 45.20, date: '2026-07-12', status: 'Completed' },
-        { id: 3, payee: 'Internet Provider', amount: 79.99, date: '2026-07-10', status: 'Completed' },
+        { id: 1, payee: 'Electric Company', amount: 1964.23, date: '2026-07-14', status: 'Completed' },
+        { id: 2, payee: 'Water Utility', amount: 645.20, date: '2026-07-12', status: 'Completed' },
+        { id: 3, payee: 'Internet Provider', amount: 329.99, date: '2026-07-10', status: 'Completed' },
         { id: 4, payee: 'Mobile Carrier', amount: 65.00, date: '2026-07-05', status: 'Completed' },
     ]);
 

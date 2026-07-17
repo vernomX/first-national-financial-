@@ -39,7 +39,6 @@ const Sidebar = () => {
 
   const navItems: NavItem[] = [
     { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', path: '/dashboard' },
-    { id: 'accounts', icon: 'account_balance_wallet', label: 'Accounts', path: '#', disabled: true },
     { id: 'transfers', icon: 'swap_horiz', label: 'Transfers', path: '/transfers' },
     { id: 'billpay', icon: 'receipt_long', label: 'Bill Pay', path: '/billpay' },
     { id: 'settings', icon: 'settings', label: 'Settings', path: '/settings' },

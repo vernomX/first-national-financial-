@@ -1,14 +1,23 @@
 [
-  {
+ {
     "id": 1,
+    "date": "Jul 17, 2026",
+    "description": "Deposit",
+    "category": "Contract",
+    "amount": "$2,490,000.00",
+    "type": "credit"
+  },
+ 
+  {
+    "id": 2,
     "date": "Jul 16, 2026",
-    "description": "Walmart",
-    "category": "Shopping",
+    "description": "Air BNB",
+    "category": "Accommodation",
     "amount": "-$9845.24",
     "type": "debit"
   },
   {
-    "id": 2,
+    "id": 3,
     "date": "Jul 14, 2026",
     "description": "Deposit",
     "category": "Income",
@@ -16,15 +25,15 @@
     "type": "credit"
   },
   {
-    "id": 3,
+    "id": 4,
     "date": "Jul 14, 2026",
     "description": "Electric Bill",
     "category": "Utilities",
-    "amount": "-$8964.23",
+    "amount": "-$1964.23",
     "type": "debit"
   },
   {
-    "id": 4,
+    "id": 5,
     "date": "Jul 13, 2026",
     "description": "AAadvantage",
     "category": "Ticket",
@@ -32,7 +41,7 @@
     "type": "debit"
   },
   {
-    "id": 5,
+    "id": 6,
     "date": "Jul 13, 2026",
     "description": "Deposit",
     "category": "Income",

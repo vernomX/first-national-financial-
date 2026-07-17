@@ -176,13 +176,43 @@ export default function SmsVerification({
         padding: '24px',
         backdropFilter: 'blur(2px)'
       }}>
+      <style>{`
+        .sms-verify-card {
+          padding: 40px 32px;
+        }
+        .sms-verify-inputs {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          margin-bottom: 32px;
+          width: 100%;
+        }
+        .sms-verify-input-field {
+          width: 52px;
+          height: 64px;
+          font-size: 24px;
+        }
+        @media (max-width: 480px) {
+          .sms-verify-card {
+            padding: 32px 16px !important;
+          }
+          .sms-verify-inputs {
+            gap: 6px !important;
+          }
+          .sms-verify-input-field {
+            width: 100% !important;
+            max-width: 44px !important;
+            height: 52px !important;
+            font-size: 20px !important;
+          }
+        }
+      `}</style>
       <div
         className="sms-verify-card"
         onClick={(e) => e.stopPropagation()}
         style={{
           backgroundColor: '#f9fafb',
           borderRadius: '16px',
-          padding: '40px 32px',
           width: '100%',
           maxWidth: '440px',
           boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
@@ -239,13 +269,7 @@ export default function SmsVerification({
         )}
 
         {/* OTP Input Group */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '10px',
-          marginBottom: '32px',
-          width: '100%'
-        }}>
+        <div className="sms-verify-inputs">
           {code.map((digit, index) => (
             <input
               key={index}
@@ -261,10 +285,8 @@ export default function SmsVerification({
               onPaste={index === 0 ? handlePaste : undefined}
               disabled={isLoading}
               autoFocus={index === 0}
+              className="sms-verify-input-field"
               style={{
-                width: '52px',
-                height: '64px',
-                fontSize: '24px',
                 textAlign: 'center',
                 backgroundColor: 'transparent',
                 border: digit ? '1.5px solid #3b82f6' : '1.5px solid #d1d5db',
