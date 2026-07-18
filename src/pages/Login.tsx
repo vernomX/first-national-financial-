@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import styles from './Login.module.css';
+import { clearPendingPayments } from '../lib/pendingPayments';
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
+
+    useEffect(() => {
+        clearPendingPayments();
+    }, []);
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         username: '',
