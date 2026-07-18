@@ -170,22 +170,25 @@ export default function DashboardPage() {
                             marginTop: '24px'
                         }}>
                             {/* Top Row - Dark Buttons */}
-                            <button style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '8px',
-                                backgroundColor: '#1e3a8a',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '6px',
-                                padding: '10px 16px',
-                                fontSize: '14px',
-                                fontWeight: '600',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s',
-                                whiteSpace: 'nowrap'
-                            }}>
+                            <button 
+                                onClick={() => navigate('/deposit')}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '8px',
+                                    backgroundColor: '#1e3a8a',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '6px',
+                                    padding: '10px 16px',
+                                    fontSize: '14px',
+                                    fontWeight: '600',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s',
+                                    whiteSpace: 'nowrap'
+                                }}
+                            >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -219,22 +222,25 @@ export default function DashboardPage() {
                             </button>
 
                             {/* Bottom Row - Light Buttons */}
-                            <button style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '8px',
-                                backgroundColor: 'white',
-                                color: '#1a1a2e',
-                                border: '1px solid #e2e8f0',
-                                borderRadius: '6px',
-                                padding: '10px 16px',
-                                fontSize: '14px',
-                                fontWeight: '600',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s',
-                                whiteSpace: 'nowrap'
-                            }}>
+                            <button 
+                                onClick={() => navigate('/statements')}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '8px',
+                                    backgroundColor: 'white',
+                                    color: '#1a1a2e',
+                                    border: '1px solid #e2e8f0',
+                                    borderRadius: '6px',
+                                    padding: '10px 16px',
+                                    fontSize: '14px',
+                                    fontWeight: '600',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s',
+                                    whiteSpace: 'nowrap'
+                                }}
+                            >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                     <polyline points="14 2 14 8 20 8"></polyline>

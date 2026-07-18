@@ -7,6 +7,8 @@ import TransfersPage from './pages/Transfers';
 import BillPayPage from './pages/BillPay';
 import SettingsPage from './pages/Settings';
 import SupportChat from './components/SupportChat';
+import StatementsPage from './pages/Statements';
+import DepositPage from './pages/Deposit';
 
 function App() {
     return (
@@ -19,6 +21,8 @@ function App() {
                 <Route path="/transfers" element={<TransfersPage />} />
                 <Route path="/billpay" element={<BillPayPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/statements" element={<StatementsPage />} />
+                <Route path="/deposit" element={<DepositPage />} />
                 {/* Fallback route */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
