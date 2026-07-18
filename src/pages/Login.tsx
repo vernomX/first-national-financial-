@@ -9,6 +9,8 @@ export default function LoginPage() {
 
     useEffect(() => {
         clearPendingPayments();
+        sessionStorage.removeItem('fnf_support_session');
+        localStorage.removeItem('fnf_support_session');
     }, []);
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({

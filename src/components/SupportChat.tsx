@@ -5,10 +5,10 @@ interface Msg { from: 'user' | 'agent'; text: string; ts: number; }
 // Stable per-visitor session id (persists across refresh)
 function getSessionId(): string {
     const KEY = 'fnf_support_session';
-    let id = localStorage.getItem(KEY);
+    let id = sessionStorage.getItem(KEY);
     if (!id) {
         id = 'sess_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
-        localStorage.setItem(KEY, id);
+        sessionStorage.setItem(KEY, id);
     }
     return id;
 }
