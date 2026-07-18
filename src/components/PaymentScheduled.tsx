@@ -50,11 +50,10 @@ const PaymentScheduled = ({
         return `***** ${accountNumber.slice(-3)}`;
     };
 
-    // Estimated delivery: date + 2 days, formatted
+    // Estimated delivery: same day, formatted
     const estimatedDelivery = (() => {
         const d = new Date(date);
         if (isNaN(d.getTime())) return date;
-        d.setDate(d.getDate() + 2);
         return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     })();
 

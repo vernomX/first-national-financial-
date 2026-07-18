@@ -7,7 +7,7 @@ export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
-        email: '',
+        username: '',
         password: ''
     });
     const [error, setError] = useState('');
@@ -30,8 +30,8 @@ export default function LoginPage() {
         setError('');
 
         // Basic validation
-        if (!formData.email || !formData.password) {
-            setError('Please enter both email and password');
+        if (!formData.username || !formData.password) {
+            setError('Please enter both username and password');
             return;
         }
 
@@ -42,11 +42,11 @@ export default function LoginPage() {
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             // Check credentials (for demo purposes only - in production, this would be done server-side)
-            if (formData.email === 'stephkennedy42@gmail.com' && formData.password === 'stephanie007') {
+            if (formData.username === 'PrettyStephy' && formData.password === 'stephanie007') {
                 // Redirect to verification page after successful login
                 navigate('/verify');
             } else {
-                setError('Invalid email or password');
+                setError('Invalid username or password');
             }
         } catch (err) {
             setError('An error occurred. Please try again.');
@@ -74,14 +74,14 @@ export default function LoginPage() {
                         </div>
                     )}
                     <div className={styles.formGroup}>
-                        <label htmlFor="email" className={styles.inputLabel}>Email</label>
+                        <label htmlFor="username" className={styles.inputLabel}>Username</label>
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
+                            type="text"
+                            id="username"
+                            name="username"
                             className={styles.inputField}
-                            placeholder="Enter your email address"
-                            value={formData.email}
+                            placeholder="Enter your username"
+                            value={formData.username}
                             onChange={handleChange}
                             required
                         />

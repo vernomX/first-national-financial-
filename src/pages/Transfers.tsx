@@ -29,7 +29,7 @@ export default function TransfersPage() {
         id: 'checking-1234',
         name: 'Checking Account',
         lastFour: '3614',
-        balance: 560568.17,
+        balance: 3050568.17,
         type: 'Personal'
     };
 

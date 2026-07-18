@@ -2,8 +2,8 @@
  {
     "id": 1,
     "date": "Jul 17, 2026",
-    "description": "Deposit",
-    "category": "Contract",
+    "description": "Incoming Wire",
+    "category": "Wire",
     "amount": "$2,490,000.00",
     "type": "credit"
   },
@@ -11,8 +11,8 @@
   {
     "id": 2,
     "date": "Jul 16, 2026",
-    "description": "Air BNB",
-    "category": "Accommodation",
+    "description": "Airbnb",
+    "category": "Housing",
     "amount": "-$9845.24",
     "type": "debit"
   },
