@@ -9,6 +9,7 @@ export default function TransfersPage() {
     const [amount, setAmount] = useState('');
     const [bankSearch, setBankSearch] = useState('');
     const [accountNumber, setAccountNumber] = useState('');
+    const [recipientName, setRecipientName] = useState('');
     const [routingNumber, setRoutingNumber] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -16,6 +17,7 @@ export default function TransfersPage() {
     const [transferData, setTransferData] = useState({
         amount: '',
         accountNumber: '',
+        recipientName: '',
         routingNumber: '',
         bankName: ''
     });
@@ -79,9 +81,7 @@ export default function TransfersPage() {
     const handleBankSelect = (bank: BankType) => {
         lastSelectedBankName.current = bank.name;
         setBankSearch(bank.name);
-        if (bank.routingNumber) {
-            setRoutingNumber(bank.routingNumber);
-        }
+        // Routing number is entered manually by the user — no auto-fill.
         setBankSuggestions([]);
         setShowSuggestions(false);
         document.getElementById('bank-search-input')?.focus();
@@ -94,6 +94,7 @@ export default function TransfersPage() {
         setTransferData({
             amount,
             accountNumber,
+            recipientName,
             routingNumber,
             bankName: bankSearch
         });
@@ -508,6 +509,36 @@ export default function TransfersPage() {
                                         )}
 
                                     </div>
+                                </div>
+
+                                {/* Recipient Name */}
+                                <div style={{ marginBottom: '24px' }}>
+                                    <label style={{
+                                        display: 'block',
+                                        marginBottom: '8px',
+                                        color: '#4a5568',
+                                        fontWeight: '500',
+                                        fontSize: '14px'
+                                    }}>
+                                        Recipient's Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={recipientName}
+                                        onChange={(e) => setRecipientName(e.target.value)}
+                                        placeholder="Enter recipient's full name"
+                                        required
+                                        style={{
+                                            width: '100%',
+                                            padding: '12px 16px',
+                                            border: '1px solid #e2e8f0',
+                                            borderRadius: '8px',
+                                            fontSize: '16px',
+                                            color: '#1a202c',
+                                            outline: 'none',
+                                            transition: 'border-color 0.2s'
+                                        }}
+                                    />
                                 </div>
 
                                 {/* Account Number */}

@@ -84,6 +84,7 @@ export default function SupportChat() {
                 .fnf-sc-panel {
                     position: fixed; bottom: 96px; right: 24px; z-index: 9999;
                     width: min(380px, calc(100vw - 32px)); height: min(560px, calc(100vh - 140px));
+                    max-height: 100dvh;
                     background: #fff; border-radius: 16px; overflow: hidden;
                     box-shadow: 0 24px 60px rgba(10,23,48,0.3); border: 1px solid #e7e2d6;
                     display: flex; flex-direction: column;
@@ -108,7 +109,8 @@ export default function SupportChat() {
                 .fnf-sc-empty { text-align: center; color: #667085; font-size: 13px; margin: auto 0; padding: 20px; }
                 .fnf-sc-foot { padding: 12px; border-top: 1px solid #e7e2d6; background: #fff; display: flex; gap: 8px; }
                 .fnf-sc-input {
-                    flex: 1; border: 1px solid #e7e2d6; border-radius: 10px; padding: 11px 14px; font-size: 14px;
+                    flex: 1; border: 1px solid #e7e2d6; border-radius: 10px; padding: 11px 14px;
+                    font-size: 16px;
                     outline: none; font-family: inherit;
                 }
                 .fnf-sc-input:focus { border-color: #c9a24a; box-shadow: 0 0 0 3px rgba(201,162,74,0.15); }
