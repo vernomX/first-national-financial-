@@ -6,6 +6,7 @@ import DashboardPage from './pages/Dashboard';
 import TransfersPage from './pages/Transfers';
 import BillPayPage from './pages/BillPay';
 import SettingsPage from './pages/Settings';
+import SupportChat from './components/SupportChat';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 {/* Fallback route */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
+            <SupportChat />
         </Router>
     );
 }
