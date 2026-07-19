@@ -9,6 +9,7 @@ import SettingsPage from './pages/Settings';
 import SupportChat from './components/SupportChat';
 import StatementsPage from './pages/Statements';
 import DepositPage from './pages/Deposit';
+import ProfilePage from './pages/Profile';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/statements" element={<StatementsPage />} />
                 <Route path="/deposit" element={<DepositPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
                 {/* Fallback route */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
