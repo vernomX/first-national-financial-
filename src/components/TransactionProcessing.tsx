@@ -57,7 +57,7 @@ const TransactionProcessing = ({
         }
         return prev + 1;
       });
-    }, 60);
+    }, 400);
 
     return () => {
       if (progressInterval.current) {
