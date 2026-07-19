@@ -2,6 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import PaymentScheduled from './PaymentScheduled';
 
+// Format any amount string as 1,234.56
+const formatMoney = (raw: string | number) => {
+  const n = parseFloat(String(raw).replace(/[^0-9.]/g, ''));
+  if (isNaN(n)) return '0.00';
+  return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+};
+
 interface TransactionProcessingProps {
   amount: string;
   recipientBankName: string;
@@ -50,7 +57,7 @@ const TransactionProcessing = ({
         }
         return prev + 1;
       });
-    }, 400); // ~40s to fill
+    }, 60);
 
     return () => {
       if (progressInterval.current) {
@@ -84,36 +91,41 @@ const TransactionProcessing = ({
 
   const formatAccountNumber = (accountNumber: string) => {
     if (!accountNumber) return '*****';
-    const lastThree = accountNumber.slice(-3);
-    return `***** ${lastThree}`;
+    return `***** ${accountNumber.slice(-3)}`;
   };
+
+  const rows: [string, string][] = [
+    ['Amount', `$${formatMoney(amount)}`],
+    ['Recipient', `${recipientBankName} - ${formatAccountNumber(recipientAccountNumber)}`],
+    ['Date', date],
+  ];
 
   const overlay = (
     <div style={{
       position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
       zIndex: 2147483647,
-      background: 'radial-gradient(1200px 700px at 50% 0%, rgba(201,162,74,0.18) 0%, #0e1f3d 52%, #0a1730 100%)',
+      backgroundColor: '#f6f4ef',
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       overflowY: 'auto', WebkitOverflowScrolling: 'touch',
-      paddingTop: 'max(20px, env(safe-area-inset-top))',
+      paddingTop: 'max(24px, env(safe-area-inset-top))',
       paddingRight: 'max(16px, env(safe-area-inset-right))',
       paddingBottom: 'max(24px, env(safe-area-inset-bottom))',
       paddingLeft: 'max(16px, env(safe-area-inset-left))',
-      color: '#fff',
+      color: '#1a202c',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
       boxSizing: 'border-box',
     }}>
       <div style={{
-        backgroundColor: '#14274a',
-        borderRadius: '18px',
-        padding: 'clamp(24px, 5vw, 40px)',
-        maxWidth: '540px', width: '100%', textAlign: 'center',
-        boxShadow: '0 18px 44px rgba(0,0,0,0.34)',
+        backgroundColor: '#ffffff',
+        borderRadius: '14px',
+        padding: 'clamp(24px, 5vw, 36px)',
+        maxWidth: '520px', width: '100%', textAlign: 'center',
+        boxShadow: '0 1px 3px 0 rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.08)',
         margin: 'auto 0',
-        border: '1px solid rgba(201,162,74,0.22)',
+        border: '1px solid #e2e8f0',
       }}>
         {/* Logo */}
-        <div style={{ marginBottom: '28px' }}>
+        <div style={{ marginBottom: '26px' }}>
           <img
             src="/assets/logo.svg"
             alt="First National Financial"
@@ -125,37 +137,35 @@ const TransactionProcessing = ({
 
         {/* Spinner */}
         <div style={{
-          width: 54, height: 54, margin: '0 auto 22px',
-          border: '3px solid rgba(201,162,74,0.2)',
-          borderTopColor: '#c9a24a',
+          width: 52, height: 52, margin: '0 auto 20px',
+          border: '3px solid #e2e8f0',
+          borderTopColor: '#1e3a8a',
           borderRadius: '50%',
           animation: 'fnfspin 0.9s linear infinite',
         }} />
         <style>{`@keyframes fnfspin { to { transform: rotate(360deg); } }`}</style>
 
-        {/* Title */}
         <h1 style={{
-          fontFamily: 'Georgia, "Times New Roman", serif',
-          fontSize: 'clamp(22px, 5vw, 28px)', fontWeight: 700,
-          marginBottom: '12px', color: '#fff', letterSpacing: '-0.3px',
+          fontSize: 'clamp(20px, 5vw, 25px)', fontWeight: 700,
+          marginBottom: '10px', color: '#1a1a2e', letterSpacing: '-0.2px',
         }}>
           Processing Your Transaction
         </h1>
 
-        <p style={{ color: '#9aa6b8', marginBottom: '30px', lineHeight: 1.5 }}>
+        <p style={{ color: '#64748b', marginBottom: '28px', lineHeight: 1.55, fontSize: '14.5px' }}>
           Please do not close this window or navigate away. This may take a few moments.
         </p>
 
         {/* Progress */}
-        <div style={{ marginBottom: '30px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '14px', color: '#9aa6b8' }}>
+        <div style={{ marginBottom: '26px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '13.5px', color: '#64748b' }}>
             <span>Verifying transaction...</span>
-            <span style={{ color: '#e2c47f', fontWeight: 600 }}>{progress}%</span>
+            <span style={{ color: '#1e3a8a', fontWeight: 600 }}>{progress}%</span>
           </div>
-          <div style={{ width: '100%', height: '8px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '8px', backgroundColor: '#e2e8f0', borderRadius: '4px', overflow: 'hidden' }}>
             <div style={{
               width: `${progress}%`, height: '100%',
-              background: 'linear-gradient(90deg, #e2c47f, #c9a24a)',
+              backgroundColor: '#1e3a8a',
               transition: 'width 0.2s ease-in-out', borderRadius: '4px',
             }} />
           </div>
@@ -163,25 +173,20 @@ const TransactionProcessing = ({
 
         {/* Details */}
         <div style={{
-          backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: '14px',
-          padding: '4px 20px', marginBottom: '24px', textAlign: 'left',
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: '1px solid #e2e8f0', borderRadius: '10px',
+          padding: '2px 18px', marginBottom: '20px', textAlign: 'left',
+          backgroundColor: '#fbfcfd',
         }}>
-          {[
-            ['Amount', `$${amount}`],
-            ['Recipient', `${recipientBankName} - ${formatAccountNumber(recipientAccountNumber)}`],
-            ['Date', date],
-          ].map(([label, value], i, arr) => (
+          {rows.map(([label, value], i) => (
             <div key={label} style={{
-              display: 'flex', justifyContent: 'space-between', gap: '16px', padding: '15px 0',
-              borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+              display: 'flex', justifyContent: 'space-between', gap: '16px', padding: '14px 0',
+              borderBottom: i < rows.length - 1 ? '1px solid #eef2f6' : 'none',
             }}>
-              <span style={{ color: '#9aa6b8', fontSize: '14px' }}>{label}</span>
+              <span style={{ color: '#64748b', fontSize: '13.5px', fontWeight: 500 }}>{label}</span>
               <span style={{
-                color: label === 'Amount' ? '#fff' : '#e6e9ee',
-                fontWeight: label === 'Amount' ? 700 : 500,
+                color: '#1a1a2e',
+                fontWeight: label === 'Amount' ? 700 : 600,
                 fontSize: label === 'Amount' ? '16px' : '14px',
-                fontFamily: label === 'Amount' ? 'Georgia, serif' : 'inherit',
                 textAlign: 'right',
               }}>{value}</span>
             </div>
@@ -190,19 +195,19 @@ const TransactionProcessing = ({
 
         {/* Transaction ID */}
         <div style={{
-          backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: '8px', padding: '12px 16px',
-          marginBottom: '24px', fontFamily: 'monospace', fontSize: '13px', color: '#9aa6b8',
-          wordBreak: 'break-all', textAlign: 'center', border: '1px solid rgba(255,255,255,0.06)',
+          backgroundColor: '#f8fafc', borderRadius: '8px', padding: '12px 16px',
+          marginBottom: '20px', fontFamily: 'monospace', fontSize: '13px', color: '#64748b',
+          wordBreak: 'break-all', textAlign: 'center', border: '1px solid #e2e8f0',
         }}>
-          Transaction ID: <span style={{ color: '#e2c47f' }}>{transactionId}</span>
+          Transaction ID: <span style={{ color: '#1a1a2e', fontWeight: 600 }}>{transactionId}</span>
         </div>
 
         {/* Footer */}
-        <div style={{ fontSize: '12px', color: '#7f8ba0', marginTop: '22px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)', lineHeight: 1.6 }}>
+        <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #e2e8f0', lineHeight: 1.6 }}>
           <p style={{ marginBottom: '8px' }}>For security reasons, please do not share your transaction details with anyone.</p>
           <p style={{ margin: 0 }}>
             If you did not initiate this transaction, contact support at
-            <a href="tel:+18001234567" style={{ color: '#e2c47f', textDecoration: 'none' }}> 1-800-123-4567</a>.
+            <a href="tel:+18001234567" style={{ color: '#1e3a8a', textDecoration: 'none', fontWeight: 600 }}> 1-800-123-4567</a>.
           </p>
         </div>
       </div>
