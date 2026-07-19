@@ -184,6 +184,23 @@ export default function TransfersPage() {
         }
     };
 
+    // Keep only digits and a single decimal point, max 2 decimals
+    const sanitizeAmount = (raw: string) => {
+        let v = raw.replace(/[^\d.]/g, '');
+        const parts = v.split('.');
+        if (parts.length > 2) v = parts[0] + '.' + parts.slice(1).join('');
+        const [whole, dec] = v.split('.');
+        return dec !== undefined ? `${whole}.${dec.slice(0, 2)}` : whole;
+    };
+
+    // Add commas to the whole-number part for display
+    const formatAmount = (raw: string) => {
+        if (!raw) return '';
+        const [whole, dec] = raw.split('.');
+        const withCommas = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return dec !== undefined ? `${withCommas}.${dec}` : withCommas;
+    };
+
     return (
         <div className="app-shell" style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f6f4ef' }}>
             <Sidebar />
@@ -316,13 +333,12 @@ export default function TransfersPage() {
                                         $
                                     </span>
                                     <input
-                                        type="number"
-                                        value={amount}
-                                        onChange={(e) => setAmount(e.target.value)}
+                                        type="text"
+                                        inputMode="decimal"
+                                        value={formatAmount(amount)}
+                                        onChange={(e) => setAmount(sanitizeAmount(e.target.value))}
                                         placeholder="0.00"
                                         required
-                                        min="0.01"
-                                        step="0.01"
                                         style={{
                                             width: '100%',
                                             padding: '12px 16px 12px 36px',
@@ -340,6 +356,9 @@ export default function TransfersPage() {
                                         onBlur={(e) => {
                                             e.target.style.borderColor = '#e2e8f0';
                                             e.target.style.boxShadow = 'none';
+                                            if (!amount) return;
+                                            const n = parseFloat(amount);
+                                            if (!isNaN(n)) setAmount(n.toFixed(2));
                                         }}
                                     />
                                 </div>
