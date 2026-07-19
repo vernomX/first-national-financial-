@@ -59,7 +59,6 @@ const PaymentScheduled = ({
     const estimatedDelivery = (() => {
         const d = new Date(date);
         if (isNaN(d.getTime())) return date;
-        d.setDate(d.getDate() + 2);
         return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     })();
 
