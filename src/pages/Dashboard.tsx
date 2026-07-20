@@ -18,8 +18,16 @@ export default function DashboardPage() {
         setPending(getPendingPayments());
     }, []);
 
+    const shortDate = (d: string) => {
+        const parsed = new Date(d);
+        if (isNaN(parsed.getTime())) return d;
+        return parsed.toLocaleDateString('en-US', {
+            year: 'numeric', month: 'short', day: 'numeric'
+        });
+    };
+
     const merged = [
-        ...pending.map(p => ({ id: p.id, date: p.date, description: p.description, category: p.category, amount: p.amount, type: p.type, status: p.status })),
+        ...pending.map(p => ({ id: p.id, date: shortDate(p.date), description: p.description, category: p.category, amount: p.amount, type: p.type, status: p.status })),
         ...recentTransactions,
     ];
 
@@ -109,7 +117,7 @@ export default function DashboardPage() {
                                     <span className="balance-wrapper" style={{ display: 'inline-flex', alignItems: 'baseline', minWidth: '13ch' }}>
                                         <span className="currency-symbol" style={{ fontSize: '28px', fontWeight: '700', color: '#0f172a', marginRight: '6px' }}>$</span>
                                         <span className="balance-text" style={{ fontSize: '42px', fontWeight: '800', color: '#0f172a', lineHeight: 1.08 }}>
-                                            {isBalanceHidden ? '•••,•••.••' : '3,050,568.17'}
+                                            {isBalanceHidden ? '•••,•••.••' : '3,039,137.84'}
                                         </span>
                                     </span>
                                 </div>
@@ -390,7 +398,8 @@ export default function DashboardPage() {
                                     textAlign: 'right',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    justifyContent: 'flex-end'
+                                    justifyContent: 'flex-end',
+                                    whiteSpace: 'nowrap'
                                 }}>
                                     {transaction.amount}
                                 </div>
