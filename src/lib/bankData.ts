@@ -23,6 +23,7 @@ export const banks: Bank[] = [
   { name: 'Alliant Credit Union', routingNumber: '271081528', logoUrl: 'https://www.google.com/s2/favicons?domain=alliantcreditunion.org&sz=32' },
   { name: 'PenFed Credit Union', routingNumber: '256078446', logoUrl: 'https://www.google.com/s2/favicons?domain=penfed.org&sz=32' },
   { name: 'State Employees Credit Union', routingNumber: '253177049', logoUrl: 'https://www.google.com/s2/favicons?domain=ncsecu.org&sz=32' },
+  { name: 'South Carolina Federal Credit Union', routingNumber: '253278401', logoUrl: 'https://www.google.com/s2/favicons?domain=scfederal.org&sz=32' },
   { name: 'USAA', routingNumber: '314074269', logoUrl: 'https://www.google.com/s2/favicons?domain=usaa.com&sz=32' },
 
   // Digital Banks & Fintech
