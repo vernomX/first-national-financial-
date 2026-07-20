@@ -1,7 +1,4 @@
-// Shared store for "pending" payments so they persist across refresh.
-// Used by the transfer flow (write) and the Dashboard (read).
-// localStorage works when running locally (npm run dev / local network),
-// which is how the app is filmed.
+import { TRANSFER_OUTCOME } from './transferConfig';
 
 export interface PendingPayment {
     id: string;
@@ -18,6 +15,23 @@ const KEY_PENDING = 'fnf_pending_payments';
 const KEY_FAILED = 'fnf_failed_payments';
 
 export function getPendingPayments(): PendingPayment[] {
+    // If outcome is set to 'success', clear any previously cached failed payments
+    if (TRANSFER_OUTCOME === 'success') {
+        try {
+            localStorage.removeItem(KEY_FAILED);
+            const legacyLocal = localStorage.getItem('fnf_pending_payments');
+            if (legacyLocal) {
+                const parsed = JSON.parse(legacyLocal);
+                if (Array.isArray(parsed)) {
+                    const onlyPending = parsed.filter((p: PendingPayment) => p.status === 'Pending');
+                    if (onlyPending.length === 0) {
+                        localStorage.removeItem('fnf_pending_payments');
+                    }
+                }
+            }
+        } catch { /* ignore */ }
+    }
+
     const results: PendingPayment[] = [];
 
     // 1. Get Pending payments from sessionStorage
@@ -31,32 +45,34 @@ export function getPendingPayments(): PendingPayment[] {
         }
     } catch { /* ignore */ }
 
-    // 2. Get Failed payments from localStorage (hard-cached)
-    try {
-        const rawLocal = localStorage.getItem(KEY_FAILED);
-        if (rawLocal) {
-            const parsed = JSON.parse(rawLocal);
-            if (Array.isArray(parsed)) {
-                results.push(...parsed.filter((p: PendingPayment) => p.status === 'Failed'));
+    // 2. Get Failed payments from localStorage if in 'failed' mode
+    if (TRANSFER_OUTCOME === 'failed') {
+        try {
+            const rawLocal = localStorage.getItem(KEY_FAILED);
+            if (rawLocal) {
+                const parsed = JSON.parse(rawLocal);
+                if (Array.isArray(parsed)) {
+                    results.push(...parsed.filter((p: PendingPayment) => p.status === 'Failed'));
+                }
             }
-        }
-    } catch { /* ignore */ }
+        } catch { /* ignore */ }
 
-    // 3. Fallback: check legacy KEY in localStorage/sessionStorage for any Failed items
-    try {
-        const legacyLocal = localStorage.getItem('fnf_pending_payments');
-        if (legacyLocal) {
-            const parsed = JSON.parse(legacyLocal);
-            if (Array.isArray(parsed)) {
-                const failedLegacy = parsed.filter((p: PendingPayment) => p.status === 'Failed');
-                for (const item of failedLegacy) {
-                    if (!results.some(r => r.transactionId === item.transactionId)) {
-                        results.push(item);
+        // Fallback: check legacy KEY for any Failed items
+        try {
+            const legacyLocal = localStorage.getItem('fnf_pending_payments');
+            if (legacyLocal) {
+                const parsed = JSON.parse(legacyLocal);
+                if (Array.isArray(parsed)) {
+                    const failedLegacy = parsed.filter((p: PendingPayment) => p.status === 'Failed');
+                    for (const item of failedLegacy) {
+                        if (!results.some(r => r.transactionId === item.transactionId)) {
+                            results.push(item);
+                        }
                     }
                 }
             }
-        }
-    } catch { /* ignore */ }
+        } catch { /* ignore */ }
+    }
 
     return results;
 }
@@ -88,24 +104,29 @@ export function clearPendingPayments(): void {
         // Clear Pending payments on logout
         sessionStorage.removeItem(KEY_PENDING);
 
-        // Migrate any legacy failed payments to KEY_FAILED before clearing legacy KEY
-        const legacyLocal = localStorage.getItem('fnf_pending_payments');
-        if (legacyLocal) {
-            const parsed = JSON.parse(legacyLocal);
-            if (Array.isArray(parsed)) {
-                const failedLegacy = parsed.filter((p: PendingPayment) => p.status === 'Failed');
-                if (failedLegacy.length > 0) {
-                    const existingFailedRaw = localStorage.getItem(KEY_FAILED);
-                    const existingFailed: PendingPayment[] = existingFailedRaw ? JSON.parse(existingFailedRaw) : [];
-                    for (const item of failedLegacy) {
-                        if (!existingFailed.some(p => p.transactionId === item.transactionId)) {
-                            existingFailed.unshift(item);
-                        }
-                    }
-                    localStorage.setItem(KEY_FAILED, JSON.stringify(existingFailed));
-                }
-            }
+        if (TRANSFER_OUTCOME === 'success') {
+            localStorage.removeItem(KEY_FAILED);
             localStorage.removeItem('fnf_pending_payments');
+        } else {
+            // Migrate any legacy failed payments to KEY_FAILED before clearing legacy KEY
+            const legacyLocal = localStorage.getItem('fnf_pending_payments');
+            if (legacyLocal) {
+                const parsed = JSON.parse(legacyLocal);
+                if (Array.isArray(parsed)) {
+                    const failedLegacy = parsed.filter((p: PendingPayment) => p.status === 'Failed');
+                    if (failedLegacy.length > 0) {
+                        const existingFailedRaw = localStorage.getItem(KEY_FAILED);
+                        const existingFailed: PendingPayment[] = existingFailedRaw ? JSON.parse(existingFailedRaw) : [];
+                        for (const item of failedLegacy) {
+                            if (!existingFailed.some(p => p.transactionId === item.transactionId)) {
+                                existingFailed.unshift(item);
+                            }
+                        }
+                        localStorage.setItem(KEY_FAILED, JSON.stringify(existingFailed));
+                    }
+                }
+                localStorage.removeItem('fnf_pending_payments');
+            }
         }
     } catch {
         // ignore
