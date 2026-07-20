@@ -19,7 +19,7 @@ export default function DashboardPage() {
     }, []);
 
     const merged = [
-        ...pending.map(p => ({ id: p.id, date: p.date, description: p.description, category: p.category, amount: p.amount, type: p.type, status: 'Pending' })),
+        ...pending.map(p => ({ id: p.id, date: p.date, description: p.description, category: p.category, amount: p.amount, type: p.type, status: p.status })),
         ...recentTransactions,
     ];
 
@@ -365,6 +365,14 @@ export default function DashboardPage() {
                                         }}>
                                             Pending
                                         </span>
+                                    )}
+                                    {'status' in transaction && transaction.status === 'Failed' && (
+                                        <span style={{
+                                            display: 'inline-block', marginLeft: 8, verticalAlign: 'middle',
+                                            padding: '2px 9px', borderRadius: 999, fontSize: 10.5, fontWeight: 700,
+                                            letterSpacing: '0.04em', textTransform: 'uppercase',
+                                            background: '#fee2e2', color: '#b91c1c', border: '1px solid #fecaca',
+                                        }}>Failed</span>
                                     )}
                                 </div>
                                 <div style={{

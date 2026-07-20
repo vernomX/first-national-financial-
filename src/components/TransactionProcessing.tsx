@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import PaymentScheduled from './PaymentScheduled';
+import TransferFailed from './TransferFailed';
+import { TRANSFER_OUTCOME } from '../lib/transferConfig';
 
 // Format any amount string as 1,234.56
 const formatMoney = (raw: string | number) => {
@@ -57,7 +59,7 @@ const TransactionProcessing = ({
         }
         return prev + 1;
       });
-    }, 400);
+    }, 60);
 
     return () => {
       if (progressInterval.current) {
@@ -78,15 +80,16 @@ const TransactionProcessing = ({
   }, [progress]);
 
   if (showScheduled) {
-    return (
-      <PaymentScheduled
-        amount={amount}
-        recipientBankName={recipientBankName}
-        recipientAccountNumber={recipientAccountNumber}
-        date={date}
-        transactionId={transactionId}
-      />
-    );
+    const outcomeProps = {
+      amount,
+      recipientBankName,
+      recipientAccountNumber,
+      date,
+      transactionId,
+    };
+    return TRANSFER_OUTCOME === 'failed'
+      ? <TransferFailed {...outcomeProps} />
+      : <PaymentScheduled {...outcomeProps} />;
   }
 
   const formatAccountNumber = (accountNumber: string) => {

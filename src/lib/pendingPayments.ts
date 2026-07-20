@@ -10,7 +10,7 @@ export interface PendingPayment {
     category: string;    // e.g. "Transfer"
     amount: string;      // e.g. "-$500.00"
     type: 'debit' | 'credit';
-    status: 'Pending';
+    status: 'Pending' | 'Failed';
     transactionId: string;
 }
 
@@ -18,7 +18,7 @@ const KEY = 'fnf_pending_payments';
 
 export function getPendingPayments(): PendingPayment[] {
     try {
-        const raw = sessionStorage.getItem(KEY);
+        const raw = localStorage.getItem(KEY);
         if (!raw) return [];
         const parsed = JSON.parse(raw);
         return Array.isArray(parsed) ? parsed : [];
@@ -32,7 +32,7 @@ export function addPendingPayment(payment: PendingPayment): void {
         const existing = getPendingPayments();
         // avoid duplicates if the scheduled page re-renders
         if (existing.some(p => p.transactionId === payment.transactionId)) return;
-        sessionStorage.setItem(KEY, JSON.stringify([payment, ...existing]));
+        localStorage.setItem(KEY, JSON.stringify([payment, ...existing]));
     } catch {
         // ignore write failures — non-critical
     }
@@ -40,7 +40,7 @@ export function addPendingPayment(payment: PendingPayment): void {
 
 export function clearPendingPayments(): void {
     try {
-        sessionStorage.removeItem(KEY);
+        localStorage.removeItem(KEY);
     } catch {
         // ignore
     }
