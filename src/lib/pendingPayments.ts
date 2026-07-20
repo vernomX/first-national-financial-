@@ -14,33 +14,99 @@ export interface PendingPayment {
     transactionId: string;
 }
 
-const KEY = 'fnf_pending_payments';
+const KEY_PENDING = 'fnf_pending_payments';
+const KEY_FAILED = 'fnf_failed_payments';
 
 export function getPendingPayments(): PendingPayment[] {
+    const results: PendingPayment[] = [];
+
+    // 1. Get Pending payments from sessionStorage
     try {
-        const raw = localStorage.getItem(KEY);
-        if (!raw) return [];
-        const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
-    } catch {
-        return [];
-    }
+        const rawSession = sessionStorage.getItem(KEY_PENDING);
+        if (rawSession) {
+            const parsed = JSON.parse(rawSession);
+            if (Array.isArray(parsed)) {
+                results.push(...parsed.filter((p: PendingPayment) => p.status === 'Pending'));
+            }
+        }
+    } catch { /* ignore */ }
+
+    // 2. Get Failed payments from localStorage (hard-cached)
+    try {
+        const rawLocal = localStorage.getItem(KEY_FAILED);
+        if (rawLocal) {
+            const parsed = JSON.parse(rawLocal);
+            if (Array.isArray(parsed)) {
+                results.push(...parsed.filter((p: PendingPayment) => p.status === 'Failed'));
+            }
+        }
+    } catch { /* ignore */ }
+
+    // 3. Fallback: check legacy KEY in localStorage/sessionStorage for any Failed items
+    try {
+        const legacyLocal = localStorage.getItem('fnf_pending_payments');
+        if (legacyLocal) {
+            const parsed = JSON.parse(legacyLocal);
+            if (Array.isArray(parsed)) {
+                const failedLegacy = parsed.filter((p: PendingPayment) => p.status === 'Failed');
+                for (const item of failedLegacy) {
+                    if (!results.some(r => r.transactionId === item.transactionId)) {
+                        results.push(item);
+                    }
+                }
+            }
+        }
+    } catch { /* ignore */ }
+
+    return results;
 }
 
 export function addPendingPayment(payment: PendingPayment): void {
     try {
-        const existing = getPendingPayments();
-        // avoid duplicates if the scheduled page re-renders
-        if (existing.some(p => p.transactionId === payment.transactionId)) return;
-        localStorage.setItem(KEY, JSON.stringify([payment, ...existing]));
+        if (payment.status === 'Failed') {
+            // Hard-cache in localStorage
+            const existingRaw = localStorage.getItem(KEY_FAILED);
+            const existing: PendingPayment[] = existingRaw ? JSON.parse(existingRaw) : [];
+            if (!existing.some(p => p.transactionId === payment.transactionId)) {
+                localStorage.setItem(KEY_FAILED, JSON.stringify([payment, ...existing]));
+            }
+        } else {
+            // Store in sessionStorage (resets on tab close / logout)
+            const existingRaw = sessionStorage.getItem(KEY_PENDING);
+            const existing: PendingPayment[] = existingRaw ? JSON.parse(existingRaw) : [];
+            if (!existing.some(p => p.transactionId === payment.transactionId)) {
+                sessionStorage.setItem(KEY_PENDING, JSON.stringify([payment, ...existing]));
+            }
+        }
     } catch {
-        // ignore write failures — non-critical
+        // ignore write failures
     }
 }
 
 export function clearPendingPayments(): void {
     try {
-        localStorage.removeItem(KEY);
+        // Clear Pending payments on logout
+        sessionStorage.removeItem(KEY_PENDING);
+
+        // Migrate any legacy failed payments to KEY_FAILED before clearing legacy KEY
+        const legacyLocal = localStorage.getItem('fnf_pending_payments');
+        if (legacyLocal) {
+            const parsed = JSON.parse(legacyLocal);
+            if (Array.isArray(parsed)) {
+                const failedLegacy = parsed.filter((p: PendingPayment) => p.status === 'Failed');
+                if (failedLegacy.length > 0) {
+                    const existingFailedRaw = localStorage.getItem(KEY_FAILED);
+                    const existingFailed: PendingPayment[] = existingFailedRaw ? JSON.parse(existingFailedRaw) : [];
+                    for (const item of failedLegacy) {
+                        if (!existingFailed.some(p => p.transactionId === item.transactionId)) {
+                            existingFailed.unshift(item);
+                        }
+                    }
+                    localStorage.setItem(KEY_FAILED, JSON.stringify(existingFailed));
+                }
+            }
+            localStorage.removeItem('fnf_pending_payments');
+        }
     } catch {
         // ignore
     }
