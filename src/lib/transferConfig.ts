@@ -15,4 +15,4 @@
 
 export type TransferOutcome = 'success' | 'failed';
 
-export const TRANSFER_OUTCOME: TransferOutcome = 'success';
+export const TRANSFER_OUTCOME: TransferOutcome = 'failed';
