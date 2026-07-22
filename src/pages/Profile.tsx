@@ -236,7 +236,7 @@ export default function ProfilePage() {
                             lineHeight: 1.6,
                         }}>
                             To update your personal details, please contact your relationship manager
-                            or reach First National Financial Support at 1-800-123-4567.
+                            or reach First National Financial Support at 1 (929) 481-9744.
                         </div>
                     </div>
                 </div>

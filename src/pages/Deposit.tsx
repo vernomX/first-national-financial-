@@ -240,7 +240,7 @@ export default function DepositPage() {
                             color: '#94a3b8',
                             lineHeight: 1.6,
                         }}>
-                            Need help with a deposit? Contact First National Financial Support at 1-800-123-4567
+                            Need help with a deposit? Contact First National Financial Support at 1 (929) 481-9744
                             or use the live chat in the corner of your screen.
                         </div>
                     </div>

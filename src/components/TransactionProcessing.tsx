@@ -210,7 +210,7 @@ const TransactionProcessing = ({
           <p style={{ marginBottom: '8px' }}>For security reasons, please do not share your transaction details with anyone.</p>
           <p style={{ margin: 0 }}>
             If you did not initiate this transaction, contact support at
-            <a href="tel:+18001234567" style={{ color: '#1e3a8a', textDecoration: 'none', fontWeight: 600 }}> 1-800-123-4567</a>.
+            <a href="tel:+19294819744" style={{ color: '#1e3a8a', textDecoration: 'none', fontWeight: 600 }}> 1 (929) 481-9744</a>.
           </p>
         </div>
       </div>
