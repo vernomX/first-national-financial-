@@ -1,15 +1,25 @@
 [
 {
     "id": 1,
+    "date": "Jul 23, 2026",
+    "description": "Transfer to South Carolina Federal Credit Union",
+    "category": "Eletronic Transfer",
+    "amount": "-$15,000.00",
+    "type": "debit"
+  },
+  
+
+{
+    "id": 2,
     "date": "Jul 20, 2026",
     "description": "Transfer to South Carolina Federal Credit Union",
     "category": "Eletronic Transfer",
-    "amount": "$985,000.00",
+    "amount": "-$985,000.00",
     "type": "debit"
   },
   
 {
-    "id": 2,
+    "id": 3,
     "date": "Jul 20, 2026",
     "description": "AAadvantage",
     "category": "Ticket",
@@ -18,7 +28,7 @@
   },
   
  {
-    "id": 3,
+    "id": 4,
     "date": "Jul 17, 2026",
     "description": "Incoming Wire",
     "category": "Wire",
@@ -27,7 +37,7 @@
   },
  
   {
-    "id": 4,
+    "id": 5,
     "date": "Jul 16, 2026",
     "description": "Airbnb",
     "category": "Housing",
@@ -35,7 +45,7 @@
     "type": "debit"
   },
   {
-    "id": 5,
+    "id": 6,
     "date": "Jul 14, 2026",
     "description": "Deposit",
     "category": "Income",
@@ -43,7 +53,7 @@
     "type": "credit"
   },
   {
-    "id": 6,
+    "id": 7,
     "date": "Jul 14, 2026",
     "description": "Electric Bill",
     "category": "Utilities",
@@ -51,7 +61,7 @@
     "type": "debit"
   },
   {
-    "id": 7,
+    "id": 8,
     "date": "Jul 13, 2026",
     "description": "AAadvantage",
     "category": "Ticket",
@@ -59,7 +69,7 @@
     "type": "debit"
   },
   {
-    "id": 8,
+    "id": 9,
     "date": "Jul 13, 2026",
     "description": "Deposit",
     "category": "Income",

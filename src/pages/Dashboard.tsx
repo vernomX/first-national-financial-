@@ -117,7 +117,7 @@ export default function DashboardPage() {
                                     <span className="balance-wrapper" style={{ display: 'inline-flex', alignItems: 'baseline', minWidth: '13ch' }}>
                                         <span className="currency-symbol" style={{ fontSize: '28px', fontWeight: '700', color: '#0f172a', marginRight: '6px' }}>$</span>
                                         <span className="balance-text" style={{ fontSize: '42px', fontWeight: '800', color: '#0f172a', lineHeight: 1.08 }}>
-                                            {isBalanceHidden ? '•••,•••.••' : '2,054,107.22'}
+                                            {isBalanceHidden ? '•••,•••.••' : '2,039,107.22'}
                                         </span>
                                     </span>
                                 </div>
