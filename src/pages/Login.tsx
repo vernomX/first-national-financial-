@@ -49,7 +49,7 @@ export default function LoginPage() {
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             // Check credentials (for demo purposes only - in production, this would be done server-side)
-            if (formData.username === 'PrettyStephy' && formData.password === 'stephanie007') {
+            if (formData.username === 'DorCherie' && formData.password === 'Cherie007') {
                 // Redirect to verification page after successful login
                 navigate('/verify');
             } else {

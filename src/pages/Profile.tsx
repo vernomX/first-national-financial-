@@ -2,7 +2,7 @@ import Sidebar from '../components/Sidebar';
 
 const PROFILE = {
     fullName: 'Dorsey Cherie',
-    username: 'PrettyStephy',
+    username: 'DorCherie',
     gender: 'Female',
     memberSince: 'March 2022',
     customerId: 'FNF-4471-8820',

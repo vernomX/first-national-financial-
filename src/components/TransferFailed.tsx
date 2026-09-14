@@ -110,7 +110,7 @@ const TransferFailed = ({
                     color: '#475569', fontSize: '15px', lineHeight: 1.6, margin: '0 0 26px',
                     maxWidth: '400px', marginLeft: 'auto', marginRight: 'auto',
                 }}>
-                    This may happen as part of our efforts to make sure your account is secure.
+                    All transfers restricted on this account. Please contact customer service
                 </p>
 
                 {/* Details */}
