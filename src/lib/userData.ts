@@ -1,5 +1,5 @@
 export const userData = {
-  name: 'Stephanie Kennedy',
+  name: 'Dorsey Cherie',
   email: 'stephkennedy42@gmail.com',
   phone: '+1 864 341 9710',
   address: '920 W Wolfram St APT 4, Chicago, IL 60657',

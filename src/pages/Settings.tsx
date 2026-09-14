@@ -16,7 +16,7 @@ interface FormData {
 export default function SettingsPage() {
     const [activeTab, setActiveTab] = useState('profile');
     const [formData, setFormData] = useState<FormData>({
-        fullName: 'Stephanie Kennedy',
+        fullName: 'Dorsey Cherie',
         email: 'stephkennedy42@gmail.com',
         phone: '+1 864 341 9710',
         address: '920 W Wolfram St APT 4, Chicago, IL 60657',

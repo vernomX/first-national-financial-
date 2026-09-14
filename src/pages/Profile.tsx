@@ -1,7 +1,7 @@
 import Sidebar from '../components/Sidebar';
 
 const PROFILE = {
-    fullName: 'Stephanie Kennedy',
+    fullName: 'Dorsey Cherie',
     username: 'PrettyStephy',
     gender: 'Female',
     memberSince: 'March 2022',
