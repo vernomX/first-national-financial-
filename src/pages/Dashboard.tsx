@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import transactionsData from '../lib/transactions.json';
 import { getPendingPayments } from '../lib/pendingPayments';
+import { userData } from '../lib/userData';
 
 export default function DashboardPage() {
     const navigate = useNavigate();
@@ -117,7 +118,7 @@ export default function DashboardPage() {
                                     <span className="balance-wrapper" style={{ display: 'inline-flex', alignItems: 'baseline', minWidth: '13ch' }}>
                                         <span className="currency-symbol" style={{ fontSize: '28px', fontWeight: '700', color: '#0f172a', marginRight: '6px' }}>$</span>
                                         <span className="balance-text" style={{ fontSize: '42px', fontWeight: '800', color: '#0f172a', lineHeight: 1.08 }}>
-                                            {isBalanceHidden ? '•••,•••.••' : '900,670.00'}
+                                            {isBalanceHidden ? '•••,•••.••' : userData.accounts.checking.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                         </span>
                                     </span>
                                 </div>

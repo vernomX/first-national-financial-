@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Sidebar from '../components/Sidebar';
+import { userData } from '../lib/userData';
 
 /* ---- Clean line icons per category (navy/gold, no emoji) ---- */
 function CategoryIcon({ category }: { category: string }) {
@@ -45,7 +46,7 @@ export default function BillPayPage() {
         id: 'checking-1234',
         name: 'Checking Account',
         lastFour: '3614',
-        balance: 560568.17,
+        balance: userData.accounts.checking.balance,
         type: 'Personal',
     };
 

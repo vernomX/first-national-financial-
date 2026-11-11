@@ -7,7 +7,7 @@ export const userData = {
     checking: {
       number: '**** 3614',
       routing: '**** 8921',
-      balance: 560568.17
+      balance: 3008699.00
     }
   }
 };

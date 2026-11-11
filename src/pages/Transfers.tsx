@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import EmailVerification from '../components/EmailVerification';
 import TransactionProcessing from '../components/TransactionProcessing';
 import BankLogo from '../components/BankLogo';
+import { userData } from '../lib/userData';
 
 export default function TransfersPage() {
     const [amount, setAmount] = useState('');
@@ -31,7 +32,7 @@ export default function TransfersPage() {
         id: 'checking-1234',
         name: 'Checking Account',
         lastFour: '3614',
-        balance: 900670.00,
+        balance: userData.accounts.checking.balance,
         type: 'Personal'
     };
 
