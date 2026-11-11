@@ -65,7 +65,7 @@ export default function DashboardPage() {
                         margin: 0,
                         marginBottom: '8px'
                     }}>
-                        Welcome back, Dorsey
+                        Welcome Amanda
                     </h1>
                     <p style={{
                         fontSize: '15px',

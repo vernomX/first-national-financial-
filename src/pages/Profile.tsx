@@ -1,14 +1,14 @@
 import Sidebar from '../components/Sidebar';
 
 const PROFILE = {
-    fullName: 'Dorsey Cherie',
-    username: 'DorCherie',
+    fullName: 'Amanda Trish Morgan',
+    username: 'TrishMor',
     gender: 'Female',
     memberSince: 'March 2022',
     customerId: 'FNF-4471-8820',
     email: 'stephkennedy42@gmail.com',
     phone: '+1 (864) ••• ••10',
-    address: 'Wilmington, Delaware, USA',
+    address: '63152 watercress way, Bend OR 97701',
     tier: 'Premier Client',
     accountType: 'Checking Account — Personal',
     relationshipManager: 'Daniel Whitmore',
@@ -157,7 +157,7 @@ export default function ProfilePage() {
                             <Row label="Gender" value={PROFILE.gender} />
                             <Row label="Email Address" value={PROFILE.email} />
                             <Row label="Phone Number" value={PROFILE.phone} />
-                            <Row label="Location" value={PROFILE.address} last />
+                            <Row label="Address" value={PROFILE.address} last />
                         </div>
                     </div>
 

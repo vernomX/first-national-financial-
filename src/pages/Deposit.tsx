@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 
 const WIRE_DETAILS = [
-    { label: 'Beneficiary Name', value: 'Dorsey Cherie' },
+    { label: 'Beneficiary Name', value: 'Amanda Trish Morgan' },
     { label: 'Account Number', value: '09713614' },
     { label: 'Bank Name', value: 'First National Financial' },
     { label: 'Account Type', value: 'Checking — Personal' },
