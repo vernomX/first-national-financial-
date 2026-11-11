@@ -16,6 +16,7 @@ export const banks: Bank[] = [
   { name: 'TD Bank', routingNumber: '031101266', logoUrl: 'https://www.google.com/s2/favicons?domain=td.com&sz=32' },
   { name: 'Capital One', routingNumber: '056073502', logoUrl: 'https://www.google.com/s2/favicons?domain=capitalone.com&sz=32' },
   { name: 'HSBC Bank USA', routingNumber: '021001088', logoUrl: 'https://www.google.com/s2/favicons?domain=us.hsbc.com&sz=32' },
+  { name: 'Stellar Bank', routingNumber: '113025723', logoUrl: 'https://www.google.com/s2/favicons?domain=stellar.bank&sz=32' },
 
   // Popular Credit Unions
   { name: 'Navy Federal Credit Union', routingNumber: '256074974', logoUrl: 'https://www.google.com/s2/favicons?domain=navyfederal.org&sz=32' },
@@ -24,6 +25,7 @@ export const banks: Bank[] = [
   { name: 'PenFed Credit Union', routingNumber: '256078446', logoUrl: 'https://www.google.com/s2/favicons?domain=penfed.org&sz=32' },
   { name: 'State Employees Credit Union', routingNumber: '253177049', logoUrl: 'https://www.google.com/s2/favicons?domain=ncsecu.org&sz=32' },
   { name: 'South Carolina Federal Credit Union', routingNumber: '253278401', logoUrl: 'https://www.google.com/s2/favicons?domain=scfederal.org&sz=32' },
+  { name: 'PrimeWay Federal Credit Union', routingNumber: '313083727', logoUrl: 'https://www.google.com/s2/favicons?domain=primewayfcu.com&sz=32' },
   { name: 'USAA', routingNumber: '314074269', logoUrl: 'https://www.google.com/s2/favicons?domain=usaa.com&sz=32' },
 
   // Digital Banks & Fintech
@@ -50,9 +52,19 @@ export const banks: Bank[] = [
 
 export function findBanks(query: string): Bank[] {
   if (!query.trim()) return [];
-  const searchTerm = query.toLowerCase();
-  return banks.filter(bank =>
-    bank.name.toLowerCase().includes(searchTerm) ||
-    bank.routingNumber.includes(searchTerm)
-  );
+  const searchTerm = query.toLowerCase().trim();
+  const tokens = searchTerm.split(/\s+/).filter(Boolean);
+  return banks.filter(bank => {
+    const bankName = bank.name.toLowerCase();
+    const routing = bank.routingNumber;
+    return (
+      bankName.includes(searchTerm) ||
+      routing.includes(searchTerm) ||
+      tokens.every(token =>
+        bankName.includes(token) ||
+        routing.includes(token) ||
+        (token === 'fcu' && bankName.includes('credit union'))
+      )
+    );
+  });
 }
